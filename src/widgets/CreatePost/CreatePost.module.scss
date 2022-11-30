@@ -1,0 +1,16 @@
+.wrapper {
+  margin: 15px 0;
+  padding: 0 10px;
+}
+
+.input {
+  & > textarea {
+    resize: none;
+    border: none;
+  }
+}
+.bottom {
+  margin: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+}

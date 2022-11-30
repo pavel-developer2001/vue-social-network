@@ -1,0 +1,24 @@
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+}
+.container {
+  position: relative;
+  padding: 0 50px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: "header main footer";
+  grid-template-columns: 25% 1fr 30%;
+}
+.header {
+  grid-area: header;
+  position: fixed;
+}
+.main {
+  grid-area: main;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+.footer {
+  grid-area: footer;
+}
