@@ -10,6 +10,8 @@ const onAddMessage = () => {
 <template>
   <div :class="styles.wrapper">
     <el-input v-model="text" placeholder="Написать сообщение" />
-    <el-button @click="onAddMessage" type="primary">Отправить</el-button>
+    <el-button @click="onAddMessage" type="primary" v-if="text"
+      >Отправить</el-button
+    >
   </div>
 </template>

@@ -3,6 +3,22 @@ import { Close, Delete, Plus, ZoomIn } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import styles from "./CreateChat.module.scss";
 import type { UploadFile } from "element-plus";
+import { Field, Form } from "vee-validate";
+import { object, string } from "yup";
+import { markRaw } from "vue";
+
+const schema = markRaw(
+  object({
+    title: string().required("Ввести название"),
+    description: string().required("Ввести описание"),
+  })
+);
+
+function onSubmit(values: any, actions: any) {
+  console.log(values, image.value);
+
+  actions.resetForm();
+}
 
 const dialogImageUrl = ref("");
 const image = ref<File | null>(null);
@@ -13,19 +29,12 @@ const visible = ref(false);
 const handleRemove = (file: UploadFile) => {
   image.value = null;
 };
-
 const handlePictureCardPreview = (file: UploadFile) => {
   dialogImageUrl.value = file.url!;
   dialogVisible.value = true;
 };
 const onAddImage = (file: File) => {
   image.value = file;
-};
-const title = ref("");
-const description = ref("");
-
-const onAddChat = () => {
-  console.log("chat", title.value, description.value, image.value);
 };
 </script>
 
@@ -82,22 +91,41 @@ const onAddChat = () => {
           <img w-full :src="dialogImageUrl" alt="Preview Image" />
         </el-dialog>
       </div>
-      <div :class="styles.input">
-        <el-input v-model="title" placeholder="Название чата" />
-      </div>
-      <div :class="styles.input">
-        <el-input
-          maxlength="100"
-          placeholder="Описание чата"
-          show-word-limit
-          type="textarea"
-          v-model="description"
-          :class="styles.form"
-        />
-      </div>
-      <div :class="styles.btn">
-        <el-button type="primary" @click="onAddChat" round>Создать</el-button>
-      </div>
+      <Form as="el-form" :validation-schema="schema" @submit="onSubmit">
+        <Field name="title" v-slot="{ value, field, errorMessage }">
+          <el-form-item :error="errorMessage" required>
+            <div :class="styles.input">
+              <el-input
+                v-bind="field"
+                :validate-event="false"
+                :model-value="value"
+                placeholder="Название чата"
+              />
+            </div>
+          </el-form-item>
+        </Field>
+        <Field name="description" v-slot="{ value, field, errorMessage }">
+          <el-form-item :error="errorMessage" required>
+            <div :class="styles.input">
+              <el-input
+                maxlength="100"
+                placeholder="Описание чата"
+                show-word-limit
+                type="textarea"
+                v-bind="field"
+                :validate-event="false"
+                :model-value="value"
+                :class="styles.form"
+              />
+            </div>
+          </el-form-item>
+        </Field>
+        <div :class="styles.btn">
+          <el-button type="primary" native-type="submit" round
+            >Создать</el-button
+          >
+        </div>
+      </Form>
     </div>
   </el-dialog>
 </template>

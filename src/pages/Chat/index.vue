@@ -3,6 +3,18 @@ import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
 import styles from "./Chat.module.scss";
 import Message from "./components/Message/index.vue";
 import CreateMessage from "./components/CreateMessage/index.vue";
+import { ref } from "vue";
+
+const isSubscribe = ref(false);
+
+const onSubscribe = () => {
+  console.log("sub");
+  isSubscribe.value = true;
+};
+const onUnSubscribe = () => {
+  console.log("unsub");
+  isSubscribe.value = false;
+};
 
 const messages = [
   {
@@ -71,6 +83,26 @@ const messages = [
         <el-page-header @back="$router.push('/')">
           <template #content>
             <span class="text-large font-600 mr-3"> Чат </span>
+          </template>
+          <template #extra>
+            <div class="flex items-center">
+              <el-button
+                @click="onSubscribe"
+                v-if="!isSubscribe"
+                type="primary"
+                class="ml-2"
+                round
+                >Вступить</el-button
+              >
+              <el-button
+                @click="onUnSubscribe"
+                v-if="isSubscribe"
+                type="danger"
+                class="ml-2"
+                round
+                >Отписаться</el-button
+              >
+            </div>
           </template>
         </el-page-header>
       </div>
