@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useStore } from "@/app/store";
 import { authChecked } from "@/entities/auth/auth.selector";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import { useRouter } from "vue-router";
 import styles from "./Auth.module.scss";
 import Login from "./components/Login/index.vue";
@@ -15,6 +15,9 @@ const router = useRouter();
 
 onMounted(() => {
   if (isAuth.value === true) router.push("/");
+});
+onUpdated(() => {
+  console.log("updated", isAuth.value);
 });
 </script>
 
