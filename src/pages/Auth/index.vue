@@ -1,13 +1,19 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { useStore } from "@/app/store";
+import { authChecked } from "@/entities/auth/auth.selector";
+import { computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import styles from "./Auth.module.scss";
 import Login from "./components/Login/index.vue";
 import Register from "./components/Register/index.vue";
 
+const { state, dispatch } = useStore();
+
+const isAuth = computed(() => authChecked(state));
+console.log(isAuth.value);
 const isLogin = ref(true);
 const router = useRouter();
-const isAuth = ref(true);
+//const isAuth = ref(false);
 onMounted(() => {
   if (isAuth.value === true) router.push("/");
 });

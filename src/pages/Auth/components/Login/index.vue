@@ -31,6 +31,9 @@
 import { Field, Form } from "vee-validate";
 import { object, string } from "yup";
 import { markRaw } from "vue";
+import { useStore } from "@/app/store";
+
+const { dispatch } = useStore();
 
 const schema = markRaw(
   object({
@@ -40,7 +43,7 @@ const schema = markRaw(
 );
 
 function onSubmit(values: any, actions: any) {
-  console.log(values);
+  dispatch("auth/login", values);
   actions.resetForm();
 }
 </script>

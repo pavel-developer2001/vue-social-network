@@ -42,7 +42,7 @@
         />
       </el-form-item>
     </Field>
-    <div >
+    <div>
       <el-button type="primary" native-type="submit"
         >Зарегистрироваться</el-button
       >
@@ -53,6 +53,9 @@
 import { Field, Form } from "vee-validate";
 import { object, string } from "yup";
 import { markRaw } from "vue";
+import { useStore } from "@/app/store";
+
+const { dispatch } = useStore();
 
 const schema = markRaw(
   object({
@@ -65,7 +68,12 @@ const schema = markRaw(
 
 function onSubmit(values: any, actions: any) {
   if (values.password === values.password2) {
-    console.log(values);
+    const data = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch("auth/register", data);
     actions.resetForm();
   }
 }
