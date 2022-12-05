@@ -15,6 +15,7 @@
     "@element-plus/icons-vue": "^2.0.10",
     "axios": "^1.2.0",
     "element-plus": "^2.2.25",
+    "jwt-decode": "^3.1.2",
     "vee-validate": "^4.7.3",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",

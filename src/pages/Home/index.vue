@@ -3,7 +3,7 @@ import styles from "./Home.module.scss";
 import CreatePost from "@/widgets/CreatePost/index.vue";
 import PostList from "@/shared/ui/PostList/index.vue";
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "@/app/store";
 import { authChecked } from "@/entities/auth/auth.selector";
@@ -11,10 +11,9 @@ import { authChecked } from "@/entities/auth/auth.selector";
 const router = useRouter();
 const { state } = useStore();
 const isAuth = computed(() => authChecked(state));
-//const isAuth = ref(false);
 
 onMounted(() => {
-  if (state.auth.isAuth === false) router.push("/auth");
+  if (isAuth.value === false) router.push("/auth");
 });
 const itemsArray = [
   {

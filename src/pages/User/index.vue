@@ -2,9 +2,12 @@
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
 import styles from "./User.module.scss";
 import PostList from "@/shared/ui/PostList/index.vue";
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import EditProfile from "./components/EditProfile/index.vue";
-import { ElButton, } from "element-plus";
+import { ElButton } from "element-plus";
+import { useStore } from "@/app/store";
+import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
+import { authUser } from "@/entities/auth/auth.selector";
 
 const followers = [
   { count: 22, title: "Подписчиков" },
@@ -34,6 +37,11 @@ const itemsArray = [
       "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
   },
 ];
+const { state, dispatch } = useStore();
+onMounted(() => {
+  dispatch("auth/getUserById", userIdFromToken);
+});
+const userData = computed(() => authUser(state));
 </script>
 
 <template>
@@ -51,7 +59,7 @@ const itemsArray = [
           :size="133"
           src="https://pbs.twimg.com/media/FH8reO8XMAI_iMd?format=jpg&name=900x900"
         />
-        <edit-profile :isMe="isMe"/>
+        <edit-profile :isMe="isMe" />
         <div v-if="!isFollowing && !isMe">
           <el-button type="primary" @click="onFollowed" round
             >Подписаться</el-button
