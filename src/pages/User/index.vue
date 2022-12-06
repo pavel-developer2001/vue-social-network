@@ -9,6 +9,11 @@ import { useStore } from "@/app/store";
 import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
 import { authIsLoading, authUser } from "@/entities/auth/auth.selector";
 import { useRoute } from "vue-router";
+import {
+  postError,
+  postIsLoading,
+  postsArray,
+} from "@/entities/post/post.selector";
 
 const followers = [
   { count: 22, title: "Подписчиков" },
@@ -42,10 +47,14 @@ const { state, dispatch } = useStore();
 const route = useRoute();
 onMounted(() => {
   dispatch("auth/getUserById", route.params.id);
+  dispatch("post/getPostByUser");
 });
 
 const userData = computed(() => authUser(state));
 const isLoading = computed(() => authIsLoading(state));
+const posts = computed(() => postsArray(state));
+const postLoading = computed(() => postIsLoading(state));
+const error = computed(() => postError(state));
 </script>
 
 <template>
@@ -99,7 +108,9 @@ const isLoading = computed(() => authIsLoading(state));
         </div>
       </div>
       <div :class="styles.main">
-        <post-list :itemsArray="itemsArray" />
+        <div v-if="isLoading">Loading...</div>
+        <div v-if="error">{{ error }}</div>
+        <post-list v-if="!isLoading" :itemsArray="posts" />
       </div>
     </section>
     <section v-if="isLoading">LOading...</section></main-layout

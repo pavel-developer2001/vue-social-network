@@ -20,7 +20,7 @@ export default class PostApi {
     return await instance.get("/post/user");
   }
   static async updatePost(data: { id: number; text: string }) {
-    return await instance.patch("/post/" + data.id, data.text);
+    return await instance.patch("/post/" + data.id, data);
   }
   static async deletePost(id: number) {
     return await instance.delete("/post/" + id);

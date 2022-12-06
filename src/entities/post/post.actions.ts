@@ -70,4 +70,14 @@ export default {
       state.isLoading = false;
     }
   },
+  async getPostByUser({ state }: PostActionsType) {
+    try {
+      const data = await PostApi.getPostByUser();
+      state.posts = data.data;
+      state.isLoading = false;
+    } catch (error) {
+      state.error = (error as Error).message;
+      state.isLoading = false;
+    }
+  },
 };

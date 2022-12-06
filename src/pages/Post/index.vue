@@ -93,6 +93,10 @@ const onUpdatePost = () => {
   const data = { id: Number(route.params.id), text: text.value };
   dispatch("post/updatePost", data);
   isEdit.value = false;
+  ElMessage({
+    message: "Пост обновлён!",
+    type: "success",
+  });
 };
 const cancelUpdate = () => (isEdit.value = false);
 const privateSettrings = [
