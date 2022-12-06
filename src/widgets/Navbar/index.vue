@@ -3,7 +3,6 @@ import styles from "./Navbar.module.scss";
 import { User, ChatRound, HomeFilled } from "@element-plus/icons-vue";
 import { useStore } from "@/app/store";
 import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
-console.log(userIdFromToken);
 const menuArray = [
   { path: "/", icon: HomeFilled, title: "Главная" },
   { path: "/chat", icon: ChatRound, title: "Чат" },

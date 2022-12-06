@@ -2,19 +2,20 @@
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
 import styles from "./User.module.scss";
 import PostList from "@/shared/ui/PostList/index.vue";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import EditProfile from "./components/EditProfile/index.vue";
 import { ElButton } from "element-plus";
 import { useStore } from "@/app/store";
 import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
-import { authUser } from "@/entities/auth/auth.selector";
+import { authIsLoading, authUser } from "@/entities/auth/auth.selector";
+import { useRoute } from "vue-router";
 
 const followers = [
   { count: 22, title: "Подписчиков" },
   { count: 2, title: "Подписок" },
 ];
-const isFollowing = ref(true);
-const isMe = ref(true);
+const isFollowing = ref(false);
+
 const onFollowed = () => (isFollowing.value = !isFollowing);
 const onUnFollowed = () => (isFollowing.value = !isFollowing);
 const itemsArray = [
@@ -38,41 +39,48 @@ const itemsArray = [
   },
 ];
 const { state, dispatch } = useStore();
+const route = useRoute();
 onMounted(() => {
-  dispatch("auth/getUserById", userIdFromToken);
+  dispatch("auth/getUserById", route.params.id);
 });
+
 const userData = computed(() => authUser(state));
+const isLoading = computed(() => authIsLoading(state));
 </script>
 
 <template>
   <main-layout
-    ><section :class="styles.wrapper">
+    ><section :class="styles.wrapper" v-if="!isLoading">
       <div :class="styles.header">
         <el-page-header @back="$router.push('/')">
           <template #content>
-            <span class="text-large font-600 mr-3"> Vlad Ten</span>
+            <span class="text-large font-600 mr-3"> {{ userData.name }}</span>
           </template>
         </el-page-header>
       </div>
       <div :class="styles.top">
         <el-avatar
           :size="133"
-          src="https://pbs.twimg.com/media/FH8reO8XMAI_iMd?format=jpg&name=900x900"
+          :src="userData.avatar ? userData.avatar : null"
         />
-        <edit-profile :isMe="isMe" />
-        <div v-if="!isFollowing && !isMe">
+        <edit-profile :isMe="userData._id === userIdFromToken ? true : false" />
+        <div
+          v-if="!isFollowing && userData._id !== userIdFromToken ? true : false"
+        >
           <el-button type="primary" @click="onFollowed" round
             >Подписаться</el-button
           >
         </div>
-        <div v-if="isFollowing && !isMe">
+        <div
+          v-if="isFollowing && userData._id !== userIdFromToken ? true : false"
+        >
           <el-button type="danger" @click="onUnFollowed" round
             >Отписаться</el-button
           >
         </div>
       </div>
       <div :class="styles.content">
-        <strong>Vlad Ten</strong>
+        <strong>{{ userData.name }}</strong>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium
           aliquid numquam eaque nemo, consectetur quibusdam eligendi, fuga,
@@ -92,6 +100,8 @@ const userData = computed(() => authUser(state));
       </div>
       <div :class="styles.main">
         <post-list :itemsArray="itemsArray" />
-      </div></section
-  ></main-layout>
+      </div>
+    </section>
+    <section v-if="isLoading">LOading...</section></main-layout
+  >
 </template>

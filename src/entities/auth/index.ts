@@ -17,11 +17,6 @@ export const auth: Module<AuthState, State> = {
     isLoading: true,
     user: {},
   },
-  getters: {
-    checkAuth(state) {
-      return state.isAuth;
-    },
-  },
   mutations,
   actions,
   namespaced: true,

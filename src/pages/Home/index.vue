@@ -3,21 +3,21 @@ import styles from "./Home.module.scss";
 import CreatePost from "@/widgets/CreatePost/index.vue";
 import PostList from "@/shared/ui/PostList/index.vue";
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
-import { computed, onMounted, onUpdated } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "@/app/store";
 import { authChecked } from "@/entities/auth/auth.selector";
 
 const router = useRouter();
-const { state, getters } = useStore();
+const { state } = useStore();
 const isAuth = computed(() => authChecked(state));
-console.log("getters", getters);
 onMounted(() => {
   if (isAuth.value === false) router.push("/auth");
 });
-onUpdated(() => {
-  console.log("updated", isAuth.value);
+watch(isAuth, (newAuth, oldAuth) => {
+  if (isAuth.value === newAuth) router.push("/auth");
 });
+
 const itemsArray = [
   {
     avatar:
