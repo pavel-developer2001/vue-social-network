@@ -2,10 +2,18 @@
 import { Close, Delete, Plus, ZoomIn } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import styles from "./CreateChat.module.scss";
-import type { UploadFile } from "element-plus";
+import { ElMessage, type UploadFile } from "element-plus";
 import { Field, Form } from "vee-validate";
 import { object, string } from "yup";
 import { markRaw } from "vue";
+import { useStore } from "@/app/store";
+
+const { dispatch } = useStore();
+const dialogImageUrl = ref("");
+const image = ref<string | Blob>("");
+const dialogVisible = ref(false);
+const disabled = ref(false);
+const visible = ref(false);
 
 const schema = markRaw(
   object({
@@ -15,26 +23,29 @@ const schema = markRaw(
 );
 
 function onSubmit(values: any, actions: any) {
-  console.log(values, image.value);
-
+  const formData = new FormData();
+  formData.append("image", image.value);
+  formData.append("title", values.title);
+  formData.append("description", values.description);
+  dispatch("chat/addChat", formData);
   actions.resetForm();
+  handleRemove(image.value);
+  ElMessage({
+    message: "Чат создан",
+    type: "success",
+  });
+  visible.value = false;
 }
 
-const dialogImageUrl = ref("");
-const image = ref<File | null>(null);
-const dialogVisible = ref(false);
-const disabled = ref(false);
-const visible = ref(false);
-
-const handleRemove = (file: UploadFile) => {
-  image.value = null;
+const handleRemove = (file: any) => {
+  image.value = "";
 };
 const handlePictureCardPreview = (file: UploadFile) => {
   dialogImageUrl.value = file.url!;
   dialogVisible.value = true;
 };
-const onAddImage = (file: File) => {
-  image.value = file;
+const onAddImage = (file: any) => {
+  image.value = file.raw;
 };
 </script>
 

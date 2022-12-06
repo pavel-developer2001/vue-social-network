@@ -1,14 +1,15 @@
 <script lang="ts" setup>
 import styles from "./ChatListItem.module.scss";
-const { chat } = defineProps<{ chat: any }>();
+import type { IChat } from "@/shared/api/social-network/models";
+const { chat } = defineProps<{ chat: IChat }>();
 </script>
 
 <template>
-  <router-link to="/chat/1">
+  <router-link :to="'/chat/' + chat._id">
     <section :class="styles.wrapper">
-      <el-avatar :src="chat.avatar" />
+      <el-avatar :src="chat.image ? chat.image : null" />
       <div :class="styles.right">
-        <strong>{{ chat.name }}</strong>
+        <strong>{{ chat.title }}</strong>
         <span>{{ chat.description }}</span>
       </div>
     </section></router-link

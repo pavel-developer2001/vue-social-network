@@ -3,9 +3,25 @@ import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
 import styles from "./Chat.module.scss";
 import Message from "./components/Message/index.vue";
 import CreateMessage from "./components/CreateMessage/index.vue";
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { useStore } from "@/app/store";
+import { useRoute } from "vue-router";
+import {
+  chatData,
+  chatError,
+  chatIsLoading,
+} from "@/entities/chat/chat.selector";
 
+const route = useRoute();
+const { state, dispatch } = useStore();
 const isSubscribe = ref(false);
+const chat = computed(() => chatData(state));
+const isLoading = computed(() => chatIsLoading(state));
+const error = computed(() => chatError(state));
+
+onMounted(() => {
+  dispatch("chat/getChat", route.params.id);
+});
 
 const onSubscribe = () => {
   console.log("sub");
@@ -78,11 +94,13 @@ const messages = [
 
 <template>
   <main-layout>
-    <article :class="styles.wrapper">
+    <div v-if="isLoading">Loading...</div>
+    <div v-if="error">{{ error }}</div>
+    <article v-if="!isLoading" :class="styles.wrapper">
       <div :class="styles.header">
         <el-page-header @back="$router.push('/')">
           <template #content>
-            <span class="text-large font-600 mr-3"> Чат </span>
+            <span class="text-large font-600 mr-3"> Чат {{ chat.title }} </span>
           </template>
           <template #extra>
             <div class="flex items-center">

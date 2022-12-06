@@ -16,3 +16,12 @@ export interface IPost {
   _id: number;
   user: IUser;
 }
+export interface IChat {
+  createdAt: string;
+  description: string;
+  image: string;
+  title: string;
+  updatedAt: string;
+  user: IUser;
+  _id: number;
+}
