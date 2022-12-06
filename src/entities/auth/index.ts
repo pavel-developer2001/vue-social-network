@@ -1,4 +1,5 @@
 import type { State } from "@/app/store";
+import type { IUser } from "@/shared/api/social-network/models";
 import type { Module } from "vuex";
 import actions from "./auth.actions";
 import mutations from "./auth.mutations";
@@ -6,7 +7,7 @@ import mutations from "./auth.mutations";
 export interface AuthState {
   isAuth: boolean;
   error: null | string;
-  user: any;
+  user: IUser;
   isLoading: boolean;
 }
 
@@ -15,7 +16,7 @@ export const auth: Module<AuthState, State> = {
     isAuth: false,
     error: null,
     isLoading: true,
-    user: {},
+    user: {} as IUser,
   },
   mutations,
   actions,

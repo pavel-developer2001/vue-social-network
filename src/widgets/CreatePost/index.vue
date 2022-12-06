@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import styles from "./CreatePost.module.scss";
 import { Picture } from "@element-plus/icons-vue";
-import { ref, watch } from "vue";
-import { genFileId } from "element-plus";
+import { computed, ref} from "vue";
+import { ElMessage, genFileId } from "element-plus";
 import type { UploadInstance, UploadProps, UploadRawFile } from "element-plus";
+import { useStore } from "@/app/store";
+import { postError } from "@/entities/post/post.selector";
 
 const upload = ref<UploadInstance>();
-const image = ref<null | File>(null);
+const image = ref<string | Blob>("");
 const text = ref("");
 
 const handleExceed: UploadProps["onExceed"] = (files) => {
@@ -15,14 +17,25 @@ const handleExceed: UploadProps["onExceed"] = (files) => {
   file.uid = genFileId();
   upload.value!.handleStart(file);
 };
-watch(image, (newIm, oldIm) => {
-  console.log(newIm);
-});
 const changeFile = (file: any) => {
-  image.value = file;
+  image.value = file.raw;
 };
+const { dispatch, state } = useStore();
+const error = computed(() => postError(state));
 const onAddPost = () => {
-  console.log("data", text.value, image.value);
+  const formData = new FormData();
+  formData.append("image", image.value);
+  formData.append("text", text.value);
+  dispatch("post/addPost", formData);
+  if (!error.value) {
+    ElMessage({
+      message: "Пост создан",
+      type: "success",
+    });
+  }
+  text.value = "";
+  image.value = "";
+  upload.value!.clearFiles();
 };
 </script>
 
@@ -52,5 +65,6 @@ const onAddPost = () => {
       </el-upload>
       <el-button type="primary" @click="onAddPost">Опубликовать</el-button>
     </div>
+    <el-alert v-if="error" :title="error" type="error" effect="dark" />
   </div>
 </template>

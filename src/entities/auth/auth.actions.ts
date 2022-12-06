@@ -15,7 +15,6 @@ export default {
       localStorage.setItem("social-network", data.data.accessToken);
       state.isLoading = false;
       commit("toggleAuth", true);
-      // state.isAuth = true;
     } catch (error) {
       state.error = (error as Error).message;
       state.isLoading = false;
