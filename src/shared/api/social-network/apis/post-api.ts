@@ -10,4 +10,19 @@ export default class PostApi {
       },
     });
   }
+  static async getPosts() {
+    return await instance.get("/post/");
+  }
+  static async getPost(id: number) {
+    return await instance.get("/post/" + id);
+  }
+  static async getPostByUser() {
+    return await instance.get("/post/user");
+  }
+  static async updatePost(data: { id: number; text: string }) {
+    return await instance.patch("/post/" + data.id, data.text);
+  }
+  static async deletePost(id: number) {
+    return await instance.delete("/post/" + id);
+  }
 }

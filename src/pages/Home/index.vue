@@ -7,43 +7,33 @@ import { computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "@/app/store";
 import { authChecked } from "@/entities/auth/auth.selector";
+import {
+  postError,
+  postIsLoading,
+  postsArray,
+} from "@/entities/post/post.selector";
 
 const router = useRouter();
-const { state } = useStore();
+const { state, dispatch } = useStore();
 const isAuth = computed(() => authChecked(state));
+const posts = computed(() => postsArray(state));
+const isLoading = computed(() => postIsLoading(state));
+const error = computed(() => postError(state));
 onMounted(() => {
   if (isAuth.value === false) router.push("/auth");
+  dispatch("post/getPosts");
 });
 watch(isAuth, (newAuth, oldAuth) => {
   if (isAuth.value === newAuth) router.push("/auth");
 });
-
-const itemsArray = [
-  {
-    avatar:
-      "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-    name: "Vlad Ten",
-    time: "9 часов",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore ut",
-    image:
-      "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-  },
-  {
-    avatar:
-      "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-    name: "Vlad Ten",
-    time: "9 часов",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore ut",
-    image:
-      "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-  },
-];
 </script>
 
 <template>
   <main-layout
     ><h2 :class="styles.title">Главная</h2>
     <create-post />
-    <post-list :itemsArray="itemsArray" />
+    <div v-if="isLoading">Loading...</div>
+    <div v-if="error">{{ error }}</div>
+    <post-list :itemsArray="posts" v-if="!isLoading" />
   </main-layout>
 </template>
