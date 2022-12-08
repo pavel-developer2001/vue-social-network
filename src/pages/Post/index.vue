@@ -27,7 +27,7 @@ import {
   postData,
   postError,
   postIsLoading,
-} from "@/entities/post/post.selector";
+} from "@/entities/post/model/post.selector";
 import { computed } from "@vue/reactivity";
 const { state, dispatch } = useStore();
 

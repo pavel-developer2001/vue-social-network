@@ -1,4 +1,4 @@
-import instance from "../base";
+import instance from "../../shared/api/social-network/base";
 
 export default class AuthApi {
   static async registration(payload: {

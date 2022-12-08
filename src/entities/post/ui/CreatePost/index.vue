@@ -5,7 +5,7 @@ import { computed, ref} from "vue";
 import { ElMessage, genFileId } from "element-plus";
 import type { UploadInstance, UploadProps, UploadRawFile } from "element-plus";
 import { useStore } from "@/app/store";
-import { postError } from "@/entities/post/post.selector";
+import { postError } from "@/entities/post/model/post.selector";
 
 const upload = ref<UploadInstance>();
 const image = ref<string | Blob>("");

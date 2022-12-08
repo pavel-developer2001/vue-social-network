@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
 import styles from "./User.module.scss";
-import PostList from "@/shared/ui/PostList/index.vue";
+import PostList from "@/entities/post/ui/PostList/index.vue";
 import { computed, onMounted, ref, watch } from "vue";
 import EditProfile from "./components/EditProfile/index.vue";
 import { ElButton } from "element-plus";
 import { useStore } from "@/app/store";
 import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
-import { authIsLoading, authUser } from "@/entities/auth/auth.selector";
+import { authIsLoading, authUser } from "@/entities/auth/model/auth.selector";
 import { useRoute } from "vue-router";
 import {
   postError,
   postIsLoading,
   postsArray,
-} from "@/entities/post/post.selector";
+} from "@/entities/post/model/post.selector";
 
 const followers = [
   { count: 22, title: "Подписчиков" },
@@ -23,26 +23,6 @@ const isFollowing = ref(false);
 
 const onFollowed = () => (isFollowing.value = !isFollowing);
 const onUnFollowed = () => (isFollowing.value = !isFollowing);
-const itemsArray = [
-  {
-    avatar:
-      "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-    name: "Vlad Ten",
-    time: "9 часов",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore ut",
-    image:
-      "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-  },
-  {
-    avatar:
-      "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-    name: "Vlad Ten",
-    time: "9 часов",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore ut",
-    image:
-      "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-  },
-];
 const { state, dispatch } = useStore();
 const route = useRoute();
 onMounted(() => {

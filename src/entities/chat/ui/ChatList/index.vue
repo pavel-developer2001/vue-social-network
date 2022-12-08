@@ -6,7 +6,7 @@ import {
   chatArray,
   chatError,
   chatIsLoading,
-} from "@/entities/chat/chat.selector";
+} from "@/entities/chat/model/chat.selector";
 
 const { state, dispatch } = useStore();
 const chats = computed(() => chatArray(state));

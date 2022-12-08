@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
 import styles from "./Chat.module.scss";
-import Message from "./components/Message/index.vue";
-import CreateMessage from "./components/CreateMessage/index.vue";
+import Message from "@/entities/chat-message/ui/Message/index.vue";
+import CreateMessage from "@/entities/chat-message/ui/CreateMessage/index.vue";
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "@/app/store";
 import { useRoute } from "vue-router";
@@ -10,7 +10,7 @@ import {
   chatData,
   chatError,
   chatIsLoading,
-} from "@/entities/chat/chat.selector";
+} from "@/entities/chat/model/chat.selector";
 
 const route = useRoute();
 const { state, dispatch } = useStore();

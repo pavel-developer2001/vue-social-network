@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../../config";
-import AuthApi from "./apis/auth-api";
+import AuthApi from "../../../entities/auth/auth-api";
 
 const token =
   typeof window !== "undefined" &&

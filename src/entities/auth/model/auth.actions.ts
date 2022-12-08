@@ -1,4 +1,4 @@
-import AuthApi from "@/shared/api/social-network/apis/auth-api";
+import AuthApi from "@/entities/auth/auth-api";
 import type { Commit } from "vuex";
 import type { AuthState } from ".";
 

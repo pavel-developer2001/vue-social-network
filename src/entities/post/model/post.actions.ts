@@ -1,4 +1,4 @@
-import PostApi from "@/shared/api/social-network/apis/post-api";
+import PostApi from "@/entities/post/post-api";
 import type { Commit } from "vuex";
 import type { PostState } from ".";
 

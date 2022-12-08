@@ -1,4 +1,4 @@
-import ChatApi from "@/shared/api/social-network/apis/chat-api";
+import ChatApi from "@/entities/chat/chat-api";
 import type { Commit } from "vuex";
 import type { ChatState } from ".";
 

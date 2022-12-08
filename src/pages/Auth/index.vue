@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { useStore } from "@/app/store";
-import { authChecked } from "@/entities/auth/auth.selector";
+import { authChecked } from "@/entities/auth/model/auth.selector";
 import { computed, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import styles from "./Auth.module.scss";
-import Login from "./components/Login/index.vue";
-import Register from "./components/Register/index.vue";
+import Login from "@/entities/auth/ui/Login/index.vue";
+import Register from "@/entities/auth/ui/Register/index.vue";
 
 const { state } = useStore();
 
