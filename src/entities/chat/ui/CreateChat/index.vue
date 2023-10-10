@@ -37,7 +37,7 @@ function onSubmit(values: any, actions: any) {
   visible.value = false
 }
 
-const handleRemove = (file: any) => {
+const handleRemove = () => {
   image.value = ""
 }
 const handlePictureCardPreview = (file: UploadFile) => {

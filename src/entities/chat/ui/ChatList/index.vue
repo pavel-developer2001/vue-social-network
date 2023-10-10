@@ -22,11 +22,8 @@ onMounted(() => {
   <article>
     <div v-if="isLoading">LOading...</div>
     <div v-if="error">{{ error }}</div>
-    <chat-list-item
-      v-if="!isLoading"
-      v-for="chat in chats"
-      :key="chat._id"
-      :chat="chat"
-    />
+    <template v-if="!isLoading">
+      <chat-list-item v-for="chat in chats" :key="chat._id" :chat="chat" />
+    </template>
   </article>
 </template>

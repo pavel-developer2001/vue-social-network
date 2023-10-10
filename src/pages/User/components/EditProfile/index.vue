@@ -3,13 +3,13 @@ import { Close } from "@element-plus/icons-vue"
 import { ref } from "vue"
 import styles from "./EditProfile.module.scss"
 
-const { isMe } = defineProps<{ isMe: boolean }>()
+const props = defineProps<{ isMe: boolean }>()
 
 const visible = ref(false)
 </script>
 
 <template>
-  <div v-if="isMe">
+  <div v-if="props.isMe">
     <el-button round @click="visible = true">Изменить профиль</el-button>
   </div>
   <el-dialog v-model="visible" :show-close="false">

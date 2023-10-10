@@ -14,4 +14,7 @@ module.exports = {
     ecmaVersion: "latest",
   },
   plugins: ["@typescript-eslint", "prettier"],
+  rules: {
+    "vue/multi-word-component-names": "off",
+  },
 }

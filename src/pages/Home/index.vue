@@ -23,7 +23,7 @@ onMounted(() => {
   if (isAuth.value === false) router.push("/auth")
   dispatch("post/getPosts")
 })
-watch(isAuth, (newAuth, oldAuth) => {
+watch(isAuth, (newAuth) => {
   if (isAuth.value === newAuth) router.push("/auth")
 })
 </script>

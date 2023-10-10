@@ -16,7 +16,7 @@ const router = useRouter()
 onMounted(() => {
   if (isAuth.value === true) router.push("/")
 })
-watch(isAuth, (newAuth, oldAuth) => {
+watch(isAuth, (newAuth) => {
   if (isAuth.value === newAuth) router.push("/")
 })
 </script>

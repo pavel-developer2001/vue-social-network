@@ -128,7 +128,7 @@ const privateSettrings = [
       <div :class="styles.top">
         <router-link :to="'/user/' + post.user?._id">
           <div :class="styles.left">
-            <el-avatar :src="post.user?.avatar ? post.user?.avatar : null" />
+            <el-avatar :src="post.user?.avatar ? post.user?.avatar : ''" />
             <strong>{{ post.user?.name }}</strong>
           </div></router-link
         >
@@ -146,32 +146,29 @@ const privateSettrings = [
             trigger="click"
             virtual-triggering
           >
-            <div
-              v-if="!isEdit"
-              v-for="setting in settings"
-              :key="setting.title"
-            >
-              <div :class="styles.func" @click="setting.func">
-                <Component
-                  :class="styles.seticon"
-                  :is="setting.icon"
-                ></Component>
-                <span>{{ setting.title }}</span>
+            <template v-if="!isEdit">
+              <div v-for="setting in settings" :key="setting.title">
+                <div :class="styles.func" @click="setting.func">
+                  <Component
+                    :class="styles.seticon"
+                    :is="setting.icon"
+                  ></Component>
+                  <span>{{ setting.title }}</span>
+                </div>
               </div>
-            </div>
-            <div
-              v-if="isEdit"
-              v-for="setting in privateSettrings"
-              :key="setting.title"
-            >
-              <div :class="styles.func" @click="setting.func">
-                <Component
-                  :class="styles.seticon"
-                  :is="setting.icon"
-                ></Component>
-                <span>{{ setting.title }}</span>
+            </template>
+
+            <template v-if="isEdit">
+              <div v-for="setting in privateSettrings" :key="setting.title">
+                <div :class="styles.func" @click="setting.func">
+                  <Component
+                    :class="styles.seticon"
+                    :is="setting.icon"
+                  ></Component>
+                  <span>{{ setting.title }}</span>
+                </div>
               </div>
-            </div>
+            </template>
           </el-popover>
         </div>
       </div>
@@ -182,7 +179,7 @@ const privateSettrings = [
         <el-input v-model="text" v-if="isEdit" />
         <el-image
           :class="styles.image"
-          :src="post.image ? post.image : null"
+          :src="post.image ? post.image : ''"
           fit="cover"
         />
         <span>{{ dayjs(post.createdAt).format("dddd, DD/MM/YYYY, H:m") }}</span>

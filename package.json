@@ -10,18 +10,11 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "yarn lint --fix",
     "format": "prettier . --write",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.{vue}": [
-      "yarn format",
-      "yarn lint",
-      "yarn lint:scss"
-    ]
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",

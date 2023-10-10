@@ -6,11 +6,11 @@ interface PostListProps {
   itemsArray: IPost[]
 }
 
-const { itemsArray } = defineProps<PostListProps>()
+const props = defineProps<PostListProps>()
 </script>
 
 <template>
-  <section v-for="item in itemsArray" :key="item._id">
+  <section v-for="item in props.itemsArray" :key="item._id">
     <post-list-item :item="item" />
   </section>
 </template>

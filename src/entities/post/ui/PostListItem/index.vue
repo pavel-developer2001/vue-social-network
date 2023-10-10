@@ -6,21 +6,21 @@ import dayjs from "dayjs"
 interface PostListItemProps {
   item: IPost
 }
-const { item } = defineProps<PostListItemProps>()
+const props = defineProps<PostListItemProps>()
 </script>
 
 <template>
   <div :class="styles.wrapper">
-    <router-link :to="'/post/' + item._id"
+    <router-link :to="'/post/' + props.item._id"
       ><div>
-        <router-link :to="'/user/' + item.user._id">
-          <el-avatar :src="item.user.avatar ? item.user.avatar : null"
+        <router-link :to="'/user/' + props.item.user._id">
+          <el-avatar :src="item.user.avatar ? props.item.user.avatar : ''"
         /></router-link>
       </div>
       <div :class="styles.right">
-        <router-link :to="'/user/' + item.user._id">
+        <router-link :to="'/user/' + props.item.user._id">
           <div :class="styles.top">
-            <strong>{{ item.user.name }}</strong>
+            <strong>{{ props.item.user.name }}</strong>
             <span>{{
               dayjs(item.createdAt).format("dddd, DD/MM/YYYY, H:m")
             }}</span>
@@ -28,14 +28,14 @@ const { item } = defineProps<PostListItemProps>()
         >
         <div :class="styles.main">
           <p :class="styles.text">
-            {{ item.text }}
+            {{ props.item.text }}
           </p>
-          <el-image :class="styles.image" :src="item.image" fit="cover" />
+          <el-image :class="styles.image" :src="props.item.image" fit="cover" />
         </div>
         <div :class="styles.bottom">
           <div :class="styles.setting">
             <ChatSquare :class="styles.icon" />
-            <span>{{ item.stars }}</span>
+            <span>{{ props.item.stars }}</span>
           </div>
           <div :class="styles.setting">
             <ChatSquare :class="styles.icon" />

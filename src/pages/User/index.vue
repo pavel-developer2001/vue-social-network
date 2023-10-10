@@ -2,18 +2,14 @@
 import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue"
 import styles from "./User.module.scss"
 import PostList from "@/entities/post/ui/PostList/index.vue"
-import { computed, onMounted, ref, watch } from "vue"
+import { computed, onMounted, ref } from "vue"
 import EditProfile from "./components/EditProfile/index.vue"
 import { ElButton } from "element-plus"
 import { useStore } from "@/app/store"
 import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken"
 import { authIsLoading, authUser } from "@/entities/auth/model/auth.selector"
 import { useRoute } from "vue-router"
-import {
-  postError,
-  postIsLoading,
-  postsArray,
-} from "@/entities/post/model/post.selector"
+import { postError, postsArray } from "@/entities/post/model/post.selector"
 
 const followers = [
   { count: 22, title: "Подписчиков" },
@@ -33,7 +29,6 @@ onMounted(() => {
 const userData = computed(() => authUser(state))
 const isLoading = computed(() => authIsLoading(state))
 const posts = computed(() => postsArray(state))
-const postLoading = computed(() => postIsLoading(state))
 const error = computed(() => postError(state))
 </script>
 

@@ -1,5 +1,5 @@
 import type { State } from "@/app/store"
-import type { IChat, IPost } from "@/shared/api/social-network/models"
+import type { IChat } from "@/shared/api/social-network/models"
 import type { Module } from "vuex"
 import actions from "./chat.actions"
 

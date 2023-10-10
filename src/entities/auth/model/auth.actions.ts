@@ -34,7 +34,7 @@ export default {
       state.isLoading = false
     }
   },
-  toggleAuth({ state, commit }: AuthActionsType, isAuth: boolean) {
+  toggleAuth({ state }: AuthActionsType, isAuth: boolean) {
     state.isAuth = isAuth
   },
   async refrech({ state, commit }: AuthActionsType) {
@@ -49,7 +49,7 @@ export default {
     state.isLoading = false
     commit("toggleAuth", false)
   },
-  async getUserById({ state, commit }: AuthActionsType, id: string) {
+  async getUserById({ state }: AuthActionsType, id: string) {
     const data = await AuthApi.getUser(id)
     state.user = data.data
     state.isLoading = false
