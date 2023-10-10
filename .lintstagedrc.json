@@ -1,3 +1,3 @@
 {
-  "*.vue": ["yarn format", "yarn lint", "yarn lint:scss:fix"]
+  "*.vue": ["yarn format", "yarn lint"]
 }
