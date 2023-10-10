@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import styles from "./ChatListItem.module.scss";
-import type { IChat } from "@/shared/api/social-network/models";
-const { chat } = defineProps<{ chat: IChat }>();
+import styles from "./ChatListItem.module.scss"
+import type { IChat } from "@/shared/api/social-network/models"
+const { chat } = defineProps<{ chat: IChat }>()
 </script>
 
 <template>

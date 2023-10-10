@@ -28,22 +28,22 @@
   </Form>
 </template>
 <script lang="ts" setup>
-import { Field, Form } from "vee-validate";
-import { object, string } from "yup";
-import { markRaw } from "vue";
-import { useStore } from "@/app/store";
+import { Field, Form } from "vee-validate"
+import { object, string } from "yup"
+import { markRaw } from "vue"
+import { useStore } from "@/app/store"
 
-const { dispatch } = useStore();
+const { dispatch } = useStore()
 
 const schema = markRaw(
   object({
     email: string().required("enter email").email().label("Email address"),
     password: string().required("enter password"),
   })
-);
+)
 
 function onSubmit(values: any, actions: any) {
-  dispatch("auth/login", values);
-  actions.resetForm();
+  dispatch("auth/login", values)
+  actions.resetForm()
 }
 </script>

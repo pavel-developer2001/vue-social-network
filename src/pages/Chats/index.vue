@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
-import ChatList from "@/entities/chat/ui/ChatList/index.vue";
-import CreateChat from "@/entities/chat/ui/CreateChat/index.vue";
-import styles from "./Chats.module.scss";
+import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue"
+import ChatList from "@/entities/chat/ui/ChatList/index.vue"
+import CreateChat from "@/entities/chat/ui/CreateChat/index.vue"
+import styles from "./Chats.module.scss"
 </script>
 
 <template>

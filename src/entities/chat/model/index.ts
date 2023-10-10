@@ -1,13 +1,13 @@
-import type { State } from "@/app/store";
-import type { IChat, IPost } from "@/shared/api/social-network/models";
-import type { Module } from "vuex";
-import actions from "./chat.actions";
+import type { State } from "@/app/store"
+import type { IChat, IPost } from "@/shared/api/social-network/models"
+import type { Module } from "vuex"
+import actions from "./chat.actions"
 
 export interface ChatState {
-  chats: IChat[];
-  chat: IChat;
-  error: null | string;
-  isLoading: boolean;
+  chats: IChat[]
+  chat: IChat
+  error: null | string
+  isLoading: boolean
 }
 
 export const chat: Module<ChatState, State> = {
@@ -19,4 +19,4 @@ export const chat: Module<ChatState, State> = {
   },
   actions,
   namespaced: true,
-};
+}

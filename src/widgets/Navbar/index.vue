@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import styles from "./Navbar.module.scss";
-import { User, ChatRound, HomeFilled } from "@element-plus/icons-vue";
-import { useStore } from "@/app/store";
-import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
+import styles from "./Navbar.module.scss"
+import { User, ChatRound, HomeFilled } from "@element-plus/icons-vue"
+import { useStore } from "@/app/store"
+import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken"
 const menuArray = [
   { path: "/", icon: HomeFilled, title: "Главная" },
   { path: "/chat", icon: ChatRound, title: "Чат" },
   { path: "/user/" + userIdFromToken, icon: User, title: "Профиль" },
-];
-const { dispatch } = useStore();
+]
+const { dispatch } = useStore()
 
-const onLogout = () => dispatch("auth/logout");
+const onLogout = () => dispatch("auth/logout")
 </script>
 
 <template>

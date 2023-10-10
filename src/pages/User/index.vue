@@ -1,40 +1,40 @@
 <script setup lang="ts">
-import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue";
-import styles from "./User.module.scss";
-import PostList from "@/entities/post/ui/PostList/index.vue";
-import { computed, onMounted, ref, watch } from "vue";
-import EditProfile from "./components/EditProfile/index.vue";
-import { ElButton } from "element-plus";
-import { useStore } from "@/app/store";
-import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken";
-import { authIsLoading, authUser } from "@/entities/auth/model/auth.selector";
-import { useRoute } from "vue-router";
+import MainLayout from "@/shared/ui/layouts/MainLayout/index.vue"
+import styles from "./User.module.scss"
+import PostList from "@/entities/post/ui/PostList/index.vue"
+import { computed, onMounted, ref, watch } from "vue"
+import EditProfile from "./components/EditProfile/index.vue"
+import { ElButton } from "element-plus"
+import { useStore } from "@/app/store"
+import { userIdFromToken } from "@/shared/lib/utils/getDataFromToken"
+import { authIsLoading, authUser } from "@/entities/auth/model/auth.selector"
+import { useRoute } from "vue-router"
 import {
   postError,
   postIsLoading,
   postsArray,
-} from "@/entities/post/model/post.selector";
+} from "@/entities/post/model/post.selector"
 
 const followers = [
   { count: 22, title: "Подписчиков" },
   { count: 2, title: "Подписок" },
-];
-const isFollowing = ref(false);
+]
+const isFollowing = ref(false)
 
-const onFollowed = () => (isFollowing.value = !isFollowing);
-const onUnFollowed = () => (isFollowing.value = !isFollowing);
-const { state, dispatch } = useStore();
-const route = useRoute();
+const onFollowed = () => (isFollowing.value = !isFollowing.value)
+const onUnFollowed = () => (isFollowing.value = !isFollowing.value)
+const { state, dispatch } = useStore()
+const route = useRoute()
 onMounted(() => {
-  dispatch("auth/getUserById", route.params.id);
-  dispatch("post/getPostByUser");
-});
+  dispatch("auth/getUserById", route.params.id)
+  dispatch("post/getPostByUser")
+})
 
-const userData = computed(() => authUser(state));
-const isLoading = computed(() => authIsLoading(state));
-const posts = computed(() => postsArray(state));
-const postLoading = computed(() => postIsLoading(state));
-const error = computed(() => postError(state));
+const userData = computed(() => authUser(state))
+const isLoading = computed(() => authIsLoading(state))
+const posts = computed(() => postsArray(state))
+const postLoading = computed(() => postIsLoading(state))
+const error = computed(() => postError(state))
 </script>
 
 <template>

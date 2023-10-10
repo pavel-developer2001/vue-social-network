@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import styles from "./PostListItem.module.scss";
-import { ChatSquare } from "@element-plus/icons-vue";
-import type { IPost } from "@/shared/api/social-network/models";
-import dayjs from "dayjs";
+import styles from "./PostListItem.module.scss"
+import { ChatSquare } from "@element-plus/icons-vue"
+import type { IPost } from "@/shared/api/social-network/models"
+import dayjs from "dayjs"
 interface PostListItemProps {
-  item: IPost;
+  item: IPost
 }
-const { item } = defineProps<PostListItemProps>();
+const { item } = defineProps<PostListItemProps>()
 </script>
 
 <template>

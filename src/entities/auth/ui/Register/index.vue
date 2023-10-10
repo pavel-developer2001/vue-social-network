@@ -50,12 +50,12 @@
   </Form>
 </template>
 <script lang="ts" setup>
-import { Field, Form } from "vee-validate";
-import { object, string } from "yup";
-import { markRaw } from "vue";
-import { useStore } from "@/app/store";
+import { Field, Form } from "vee-validate"
+import { object, string } from "yup"
+import { markRaw } from "vue"
+import { useStore } from "@/app/store"
 
-const { dispatch } = useStore();
+const { dispatch } = useStore()
 
 const schema = markRaw(
   object({
@@ -64,7 +64,7 @@ const schema = markRaw(
     password: string().required("enter password"),
     password2: string().required("enter password2"),
   })
-);
+)
 
 function onSubmit(values: any, actions: any) {
   if (values.password === values.password2) {
@@ -72,9 +72,9 @@ function onSubmit(values: any, actions: any) {
       name: values.name,
       email: values.email,
       password: values.password,
-    };
-    dispatch("auth/register", data);
-    actions.resetForm();
+    }
+    dispatch("auth/register", data)
+    actions.resetForm()
   }
 }
 </script>

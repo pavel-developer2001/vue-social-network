@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import styles from "./CreateMessage.module.scss";
-const text = ref("");
+import { ref } from "vue"
+import styles from "./CreateMessage.module.scss"
+const text = ref("")
 const onAddMessage = () => {
-  console.log(text.value);
-};
+  console.log(text.value)
+}
 </script>
 
 <template>

@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import { useStore } from "@/app/store";
-import { authChecked } from "@/entities/auth/model/auth.selector";
-import { computed, onMounted, ref, watch } from "vue";
-import { useRouter } from "vue-router";
-import styles from "./Auth.module.scss";
-import Login from "@/entities/auth/ui/Login/index.vue";
-import Register from "@/entities/auth/ui/Register/index.vue";
+import { useStore } from "@/app/store"
+import { authChecked } from "@/entities/auth/model/auth.selector"
+import { computed, onMounted, ref, watch } from "vue"
+import { useRouter } from "vue-router"
+import styles from "./Auth.module.scss"
+import Login from "@/entities/auth/ui/Login/index.vue"
+import Register from "@/entities/auth/ui/Register/index.vue"
 
-const { state } = useStore();
+const { state } = useStore()
 
-const isAuth = computed(() => authChecked(state));
-const isLogin = ref(true);
-const router = useRouter();
+const isAuth = computed(() => authChecked(state))
+const isLogin = ref(true)
+const router = useRouter()
 
 onMounted(() => {
-  if (isAuth.value === true) router.push("/");
-});
+  if (isAuth.value === true) router.push("/")
+})
 watch(isAuth, (newAuth, oldAuth) => {
-  if (isAuth.value === newAuth) router.push("/");
-});
+  if (isAuth.value === newAuth) router.push("/")
+})
 </script>
 
 <template>

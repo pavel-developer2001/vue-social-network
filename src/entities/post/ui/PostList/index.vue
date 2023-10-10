@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import type { IPost } from "@/shared/api/social-network/models";
-import PostListItem from "../PostListItem/index.vue";
+import type { IPost } from "@/shared/api/social-network/models"
+import PostListItem from "../PostListItem/index.vue"
 
 interface PostListProps {
-  itemsArray: IPost[];
+  itemsArray: IPost[]
 }
 
-const { itemsArray } = defineProps<PostListProps>();
-
+const { itemsArray } = defineProps<PostListProps>()
 </script>
 
 <template>

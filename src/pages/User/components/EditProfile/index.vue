@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Close } from "@element-plus/icons-vue";
-import { ref } from "vue";
-import styles from "./EditProfile.module.scss";
+import { Close } from "@element-plus/icons-vue"
+import { ref } from "vue"
+import styles from "./EditProfile.module.scss"
 
-const { isMe } = defineProps<{ isMe: boolean }>();
+const { isMe } = defineProps<{ isMe: boolean }>()
 
-const visible = ref(false);
+const visible = ref(false)
 </script>
 
 <template>

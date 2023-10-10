@@ -1,42 +1,42 @@
 <script setup lang="ts">
-import styles from "./CreatePost.module.scss";
-import { Picture } from "@element-plus/icons-vue";
-import { computed, ref} from "vue";
-import { ElMessage, genFileId } from "element-plus";
-import type { UploadInstance, UploadProps, UploadRawFile } from "element-plus";
-import { useStore } from "@/app/store";
-import { postError } from "@/entities/post/model/post.selector";
+import styles from "./CreatePost.module.scss"
+import { Picture } from "@element-plus/icons-vue"
+import { computed, ref } from "vue"
+import { ElMessage, genFileId } from "element-plus"
+import type { UploadInstance, UploadProps, UploadRawFile } from "element-plus"
+import { useStore } from "@/app/store"
+import { postError } from "@/entities/post/model/post.selector"
 
-const upload = ref<UploadInstance>();
-const image = ref<string | Blob>("");
-const text = ref("");
+const upload = ref<UploadInstance>()
+const image = ref<string | Blob>("")
+const text = ref("")
 
 const handleExceed: UploadProps["onExceed"] = (files) => {
-  upload.value!.clearFiles();
-  const file = files[0] as UploadRawFile;
-  file.uid = genFileId();
-  upload.value!.handleStart(file);
-};
+  upload.value!.clearFiles()
+  const file = files[0] as UploadRawFile
+  file.uid = genFileId()
+  upload.value!.handleStart(file)
+}
 const changeFile = (file: any) => {
-  image.value = file.raw;
-};
-const { dispatch, state } = useStore();
-const error = computed(() => postError(state));
+  image.value = file.raw
+}
+const { dispatch, state } = useStore()
+const error = computed(() => postError(state))
 const onAddPost = () => {
-  const formData = new FormData();
-  formData.append("image", image.value);
-  formData.append("text", text.value);
-  dispatch("post/addPost", formData);
+  const formData = new FormData()
+  formData.append("image", image.value)
+  formData.append("text", text.value)
+  dispatch("post/addPost", formData)
   if (!error.value) {
     ElMessage({
       message: "Пост создан",
       type: "success",
-    });
+    })
   }
-  text.value = "";
-  image.value = "";
-  upload.value!.clearFiles();
-};
+  text.value = ""
+  image.value = ""
+  upload.value!.clearFiles()
+}
 </script>
 
 <template>

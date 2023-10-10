@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import styles from "./Message.module.scss";
-const { item } = defineProps<{ item: any }>();
+import styles from "./Message.module.scss"
+const { item } = defineProps<{ item: any }>()
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import styles from "./MainLayout.module.scss";
-import Navbar from "@/widgets/Navbar/index.vue";
+import styles from "./MainLayout.module.scss"
+import Navbar from "@/widgets/Navbar/index.vue"
 </script>
 
 <template>
