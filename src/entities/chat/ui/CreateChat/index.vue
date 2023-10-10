@@ -29,7 +29,7 @@ function onSubmit(values: any, actions: any) {
   formData.append("description", values.description)
   dispatch("chat/addChat", formData)
   actions.resetForm()
-  handleRemove(image.value)
+  handleRemove()
   ElMessage({
     message: "Чат создан",
     type: "success",
@@ -89,7 +89,7 @@ const onAddImage = (file: any) => {
                 <span
                   v-if="!disabled"
                   class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
+                  @click="handleRemove()"
                 >
                   <el-icon><Delete /></el-icon>
                 </span>
