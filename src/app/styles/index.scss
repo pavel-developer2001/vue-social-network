@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
-@import "./reset.scss";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap";
+@import "./reset";
 
 .wrapper {
   margin: 0 auto !important;
   max-width: calc(1440px + (100vw / 72 * 2) * 2) !important;
 }
+
+/* stylelint-disable selector-class-pattern */
 .el-page-header__title {
   display: none;
 }

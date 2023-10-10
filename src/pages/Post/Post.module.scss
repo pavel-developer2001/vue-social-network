@@ -8,58 +8,70 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .left {
   display: flex;
   align-items: center;
+
   & > strong {
     margin-left: 10px;
     font-size: 16px;
     font-weight: 500;
   }
 }
+
 .main {
   & > p {
     font-size: 18px;
     margin-bottom: 12px;
   }
+
   .image {
     border-radius: 12px;
     object-fit: cover;
     margin-bottom: 15px;
     max-height: 320px;
   }
+
   & > span {
     font-size: 14px;
   }
 }
+
 .bottom {
   margin: 25px 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 .item {
   & > strong {
     margin-right: 5px;
   }
 }
+
 .settings {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
+
 .func {
   margin: 15px 0;
   transition: 0.5s ease all;
   display: flex;
   align-items: center;
+
   &:hover {
     cursor: pointer;
     color: aqua;
   }
-  .setIcon {
+
+  .seticon {
     width: 18.75px;
   }
+
   & > span {
     margin-left: 8px;
   }

@@ -4,33 +4,40 @@
   margin: 25px 0;
   align-items: end;
 }
+
 .right {
   background-color: aliceblue;
   padding: 10px;
   border-radius: 8px;
   margin-left: 20px;
+
   & > strong {
     font-size: 17px;
     font-weight: 500;
   }
+
   & > p {
     margin: 10px 0;
     font-size: 15px;
   }
 }
+
 .bottom {
   display: flex;
   justify-content: space-between;
 }
+
 .btn {
   margin-left: 3rem;
   font-size: 13px;
   transition: 0.5s ease all;
+
   &:hover {
     color: aqua;
     cursor: pointer;
     text-decoration: underline;
   }
+
   & > span {
     font-size: 13px;
   }

@@ -3,50 +3,61 @@
   padding: 15px 10px;
   display: flex;
   transition: ease 0.5s all;
+
   &:hover {
     cursor: pointer;
     background-color: aqua;
   }
 }
+
 .right {
   display: flex;
   flex-direction: column;
   margin-left: 1.1rem;
 }
+
 .top {
-  margin: 10px 0px;
+  margin: 10px 0;
+
   & > strong {
     font-size: 15px;
     font-weight: 500;
   }
+
   & > span {
     font-size: 13px;
     margin-left: 10px;
   }
 }
+
 .text {
   margin-bottom: 8px;
 }
+
 .image {
   border-radius: 8px;
   max-height: 505px;
   object-fit: cover;
 }
+
 .bottom {
   display: flex;
   margin: 10px 0;
   align-items: center;
   justify-content: space-around;
 }
+
 .setting {
   display: flex;
   align-items: center;
+
   & > span {
     font-size: 14px;
     margin-left: 5px;
     font-weight: 400;
   }
 }
+
 .icon {
   width: 18.75px;
 }

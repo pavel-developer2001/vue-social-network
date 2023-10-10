@@ -6,23 +6,28 @@
     "bottom";
   grid-template-rows: 13fr 1fr;
 }
+
 .menu {
   padding: 10px;
   grid-area: menu;
   transition: all ease 0.5s;
+
   &:hover {
     background-color: aqua;
     border-radius: 8px;
     cursor: pointer;
   }
+
   & > a {
     color: black;
     font-size: 20px;
   }
 }
+
 .title {
   margin-left: 5px;
 }
+
 .bottom {
   grid-area: bottom;
   padding: 10px;

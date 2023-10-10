@@ -153,7 +153,7 @@ const privateSettrings = [
             >
               <div :class="styles.func" @click="setting.func">
                 <Component
-                  :class="styles.setIcon"
+                  :class="styles.seticon"
                   :is="setting.icon"
                 ></Component>
                 <span>{{ setting.title }}</span>
@@ -166,7 +166,7 @@ const privateSettrings = [
             >
               <div :class="styles.func" @click="setting.func">
                 <Component
-                  :class="styles.setIcon"
+                  :class="styles.seticon"
                   :is="setting.icon"
                 ></Component>
                 <span>{{ setting.title }}</span>

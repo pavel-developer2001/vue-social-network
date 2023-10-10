@@ -3,14 +3,17 @@
   display: flex;
   color: black;
   transition: all ease 0.5s;
+
   &:hover {
     background-color: aqua;
   }
 }
+
 .right {
   margin-left: 25px;
   display: flex;
   flex-direction: column;
+
   & > strong {
     font-size: 18px;
     font-weight: 500;
